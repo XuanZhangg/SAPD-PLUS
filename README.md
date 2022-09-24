@@ -1,5 +1,5 @@
 # WCMC-SAPD
-The folder includes the following algorithms for CNN Image Classification and  Distributionally Robust Learning:
+The folders include the following algorithms for CNN Image Classification and  Distributionally Robust Learning:
 
 1.algorithms.py
 <br />
