@@ -5,7 +5,7 @@ The folder includes the following python file for Distributionally Robust Optimi
 <br />
 including functions 
   <br />
-  SAPD,SAPD-VR, this paper
+  SAPD,SAPD-VR, https://arxiv.org/abs/2205.15084
   <br />
   SMDA,SMDA-VR, https://nips.cc/Conferences/2021/ScheduleMultitrack?event=26760
   <br />
