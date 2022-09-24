@@ -1,5 +1,5 @@
 # WCMC-SAPD
-The folder includes the following python file for Distributionally Robust Optimization experiment:
+The folder includes the following algorithms for CNN Image Classification and  Distributionally Robust Learning:
 
 1.algorithms.py
 <br />
@@ -14,42 +14,7 @@ including functions
   PASGDA, https://arxiv.org/abs/2007.13605
   <br />
   
-5.model.py
 
-  including model class for DRO experiment
-  
-3.Opitmization_Method.py
-
-  including a function that is the projection onto the unit simplex
-  
-6.functions.py
-
-  including shadow error bar plot function
-  
-7.dataclass.py
-
-  including a data class
-<br />
-<br />
-<br />
-<br />
-The folder includes the following python jupyter note book file:
-
-1.main_a9a.ipynb
-  The main file for the Distributionally Robust Optimization experiment for a9a data set
-  
-2.main_gisette.ipynb
-  The main file for the Distributionally Robust Optimization experiment for gisette data set
-  
-3.main_sido0.ipynb
-  The main file for the Distributionally Robust Optimization experiment for sido0 data set
-  
-4.main plot test.ipynb
-  The main file for ploting the three figures of Distributionally Robust Optimization experiment 
-<br />
-<br />
-<br />
-<br />
  Data set:
  
  1.a9a and gisette: https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html
