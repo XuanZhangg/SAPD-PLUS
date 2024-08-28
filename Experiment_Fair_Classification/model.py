@@ -63,8 +63,9 @@ class Model(nn.Module):
                             torch.matmul(target_transform,self.variable_y)
                             )/size 
 
-    def predict(self, x):
-        return self.forward(x).argmax(dim=1)
+    def primal_loss(self,input,idx,target):
+        # need to write according to test loss function
+        pass
 
 # class Model(nn.Module):
 #     def __init__(self, mu_y=0.1, mu_x =0.1):
