@@ -58,6 +58,36 @@ class Model(nn.Module):
   
         return 1/size*torch.sum(logistic_loss*weight_y) 
 
+    def primal_loss(self,input,idx,target):
+        size = len(target)
+    
+        #regularizer part
+        regularizer_x =  self.lambda2*torch.sum(self.alpha*self.w**2/(1 + self.alpha*self.w**2))
+        regularizer_y =  1/2*1/(self.n)**2 * torch.sum((self.n*self.variable_y - 1)**2)
+
+        #loss part
+        bax = target.unsqueeze(1) *input #:ba is the log(1 + exp(-bax))
+        logistic_loss = torch.zeros_like(bax, dtype = torch.float32)
+        #case1:
+        logistic_loss[bax <= -100.0] = -bax[bax <= -100.0]
+        #case2:
+        logistic_loss[bax > -100.0] = torch.log(1+torch.clamp(torch.exp(-bax[bax > -100.0]), min = 1e-12))
+        weight_y = torch.index_select(self.variable_y,0,index=idx)
+
+        y = self.variable_y.data.clone()
+        for i in range(100):
+            print(i)
+            y = y + 0.1 *(
+                            1/size*logistic_loss.squeeze() -   (self.variable_y.data.clone() - 1/self.n) 
+            )
+            new = torch.tensor(pj(y.cpu().detach().numpy()),dtype=torch.float32).to(y.device)
+            if torch.norm(y.data - new)<0.001:
+                y = new.clone()
+                break
+            y.data = new.clone()
+
+        return 1/size*torch.sum(logistic_loss*y) + regularizer_x - 1/2*1/(self.n)**2 * torch.sum((self.n*y - 1)**2)
+        
     def predict(self, x):
         judge = self.forward(x)>=0
         temp = torch.ones_like(judge, dtype = torch.int64)
